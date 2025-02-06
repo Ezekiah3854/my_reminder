@@ -1,4 +1,4 @@
-from . import db
+from db import db
 from flask_login import UserMixin
 from sqlalchemy import func
 
@@ -15,4 +15,4 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     username = db.Column(db.String(50))
-    notes = db.relationship('Note')
+    notes = db.relationship('Note', backref='user', lazy=True)
